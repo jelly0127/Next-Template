@@ -1,32 +1,18 @@
-import create from 'zustand'
-import { devtools, persist } from 'zustand/middleware'
-interface IAppData {
-  dark: boolean
-  count: number
-  increment: () => void
-  decrement: () => void
-  updateTheme: () => void
-}
+// useStore.ts
+import { useState, useEffect } from 'react';
 
-const useStore = create<IAppData>()(
-  devtools(
-    persist(
-      // reducer
-      (set) => ({
-        count: 0,
-        dark: true,
-        increment: () => set((state) => ({ count: state.count + 1 })),
-        decrement: () => set((state) => ({ count: state.count - 1 })),
-        updateTheme: () => set((state) => ({ dark: !state.dark })),
-      }),
+const useStore = <T, F>(
+  store: (callback: (state: T) => unknown) => unknown,
+  callback: (state: T) => F
+) => {
+  const result = store(callback) as F;
+  const [data, setData] = useState<F>();
 
-      // configuration
-      {
-        name: 'app',
-        getStorage: () => localStorage,
-      },
-    ),
-  ),
-)
+  useEffect(() => {
+    setData(result);
+  }, [result]);
 
-export default useStore
+  return data;
+};
+
+export default useStore;

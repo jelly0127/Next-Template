@@ -2,24 +2,24 @@
 
 import Link from 'next/link';
 import useStore from '@/store';
+import useAppStore from '@/store/useAppStore';
 
 const About = () => {
-  const { count, increment, decrement } = useStore();
-
+  const appData = useStore(useAppStore, (state) => state);
   return (
     <div>
       <h1 className="text-lg text-[#a11a31] capitalize">about page</h1>
       <Link href="/">back</Link>
       <br />
-      <button aria-label="Increment value" onClick={increment}>
+      <button aria-label="Increment value" onClick={appData?.increment}>
         Increment
       </button>
       <br />
 
-      <span>{count}</span>
+      <span>{appData?.count}</span>
       <br />
 
-      <button aria-label="Decrement value" onClick={decrement}>
+      <button aria-label="Decrement value" onClick={appData?.decrement}>
         Decrement
       </button>
     </div>
