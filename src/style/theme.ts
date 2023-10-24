@@ -176,7 +176,6 @@ const theme = extendTheme({
       body: {
         backgroundColor: colors.brand.secondary,
         color: colors.brand.tertiary,
-        borderRadius: '20px',
       },
     },
   },
