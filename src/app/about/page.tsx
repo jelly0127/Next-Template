@@ -3,12 +3,22 @@
 import Link from 'next/link';
 import useStore from '@/store';
 import useAppStore from '@/store/useAppStore';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ProvidersContext } from '@/contexts/Providers';
 
 const About = () => {
   const appData = useStore(useAppStore, (state) => state);
   const theme = useContext(ProvidersContext);
+  const [message, setMessage] = useState<string>('');
+
+  useEffect(() => {
+    fetch('/api/hello?id=2')
+      .then((response) => response.json())
+      .then((data) => setMessage(data.message));
+  }, []);
+  useEffect(() => {
+    console.log('message--', message);
+  }, [message]);
   return (
     <div>
       <h1 className="text-lg text-[#a11a31] capitalize dark:text-[yellow]">
