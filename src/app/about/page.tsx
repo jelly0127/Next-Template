@@ -5,7 +5,7 @@ import useStore from '@/store';
 import useAppStore from '@/store/useAppStore';
 import { useContext } from 'react';
 import { ProvidersContext } from '@/contexts/Providers';
-import { Button } from '@chakra-ui/react';
+
 const About = () => {
   const appData = useStore(useAppStore, (state) => state);
   const theme = useContext(ProvidersContext);

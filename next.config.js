@@ -12,6 +12,8 @@ const nextConfig = {
   ],
   experimental: {
     forceSwcTransforms: true,
+    appDir: true,
+    serverActions: true,
   },
   reactStrictMode: true,
   trailingSlash: false,
