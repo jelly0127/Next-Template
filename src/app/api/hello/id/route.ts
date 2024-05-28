@@ -1,6 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import db from '@/db';
 
 // Method to get a user by ID
 export async function GET(request: Request): Promise<Response> {
@@ -16,7 +14,7 @@ export async function GET(request: Request): Promise<Response> {
       });
     }
 
-    const user = await prisma.user.findUnique({
+    const user = await db.user.findUnique({
       where: { id: String(id) },
     });
 

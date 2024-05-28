@@ -1,10 +1,8 @@
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import db from '@/db';
 
 export async function GET(): Promise<Response> {
   try {
-    const users = await prisma.user.findMany();
+    const users = await db.user.findMany();
     return new Response(JSON.stringify(users), {
       status: 200,
       headers: {
@@ -24,7 +22,7 @@ export async function GET(): Promise<Response> {
 export async function POST(request: Request): Promise<Response> {
   try {
     const body = await request.json();
-    const newUser = await prisma.user.create({
+    const newUser = await db.user.create({
       data: {
         name: body.name,
         email: body.email,
