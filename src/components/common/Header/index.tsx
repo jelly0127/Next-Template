@@ -1,16 +1,36 @@
-import Link from 'next/link'
-import React from 'react'
+import { auth, signIn, signOut } from "@/auth"
 
-const index = () => {
+export default async function SignIn() {
+    const session = await auth()
+ 
   return (
-    <>
-      <div>Header</div>
-      {/* <div className="text-3xl font-bold underline text-[pink]">Hello world!</div> */}
+    <div className="flex gap-x-[40px]">
+   <form
+      action={async () => {
+        "use server"
+        await signIn("github")
+      }}
+    >
+      <button type="submit">Signin with GitHub</button>
+      </form>
+      <p>{session?.expires }</p>
+      {session && 
+       <form
+        action={async (formData) => {
+          "use server"
+          await signOut()
+        }}
+      >
+        <button type="submit">Sign out</button>
+      </form>
+      }
+     
 
-      <br />
-      <Link href={'/about'}> To About Page</Link>
-    </>
+      <div>
+        { session&&  <img src={session?.user?.image||''} alt="User Avatar" />}
+    
+    </div>
+    </div>
+ 
   )
-}
-
-export default index
+} 

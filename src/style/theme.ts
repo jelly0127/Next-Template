@@ -60,6 +60,7 @@ const sizes = {
 };
 
 const theme = extendTheme({
+  
   fonts: {
     heading: 'Gustavo',
     body: 'TWK Lausanne',

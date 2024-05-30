@@ -1,4 +1,5 @@
-// useStore.ts
+
+"use client"
 import { useState, useEffect } from 'react';
 
 const useStore = <T, F>(
