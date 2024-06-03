@@ -1,14 +1,7 @@
 import React from 'react';
-import SignIn from '../common/Header';
-
 
 const Dom = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <>
-      <SignIn />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 };
 
 export default Dom;

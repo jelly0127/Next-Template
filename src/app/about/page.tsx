@@ -21,7 +21,7 @@ const About = () => {
   }, [message]);
   return (
     <div>
-      <h1 className="text-lg text-[#a11a31] capitalize dark:text-[yellow]">
+      <h1 className="text-lg capitalize text-[#a11a31] dark:text-[yellow]">
         about page
       </h1>
       <Link href="/">back</Link>

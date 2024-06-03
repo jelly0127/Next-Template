@@ -8,8 +8,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     adapter: PrismaAdapter(db),
  session: {
     strategy: 'jwt',
-    maxAge:  60, // 设置会话过期时间为24小时
-    updateAge: 0, // 会话将在每24小时自动延长
+    maxAge:  24*60 * 1000, // 设置会话过期时间为24小时
   },
   callbacks: {
     async session({ session, token }) {

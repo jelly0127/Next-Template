@@ -8,9 +8,19 @@
     "build:stage": "APP_ENV=test next build",
     "build": "APP_ENV=production prisma generate && <actual-build-command> next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "yarn prettier && yarn eslint",
+    "eslint": "next lint --fix --dir src",
+    "prettier": "prettier --check '**/*.{tsx, ts, jsx, js, css, html}' --write '**/*.{tsx, ts, jsx, js, css, html}'",
     "prepare": "husky install",
     "postinstall": "prisma generate"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": "yarn lint"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.1.0",
@@ -26,6 +36,7 @@
     "framer-motion": "^10.16.4",
     "next": "^14.2.3",
     "next-auth": "^5.0.0-beta.18",
+    "prettier-plugin-tailwindcss": "^0.6.1",
     "react": "^18",
     "react-dom": "^18",
     "react-toastify": "^9.1.3",
@@ -41,13 +52,14 @@
     "eslint": "^8",
     "eslint-config-next": "13.5.6",
     "husky": "^8.0.3",
+    "lint-staged": "^15.2.5",
     "postcss": "^8",
     "prettier": "^3.0.3",
     "prisma": "^5.14.0",
     "tailwindcss": "^3",
     "typescript": "^5"
   },
-    "prisma": {
+  "prisma": {
     "schema": "./src/lib/prisma/schema.prisma"
   }
 }

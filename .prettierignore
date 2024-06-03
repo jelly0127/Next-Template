@@ -1,4 +1,7 @@
-.yarn
-.next
-dist
-node_modules
+build/*
+dist/*
+public/*
+.next/*
+node_modules/*
+package.json
+*.log

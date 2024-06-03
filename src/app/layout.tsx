@@ -4,6 +4,8 @@ import '../style/globals.css';
 import Providers from '@/contexts/Providers';
 import { ReactNode } from 'react';
 import Dom from '@/components/dom';
+import SessionRedirect from '@/components/common/SessionRedirect';
+import { SessionProvider } from 'next-auth/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,15 +15,22 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+
+
+
+
   
   return (
-    <html lang="en" className='dark'>
+    <html lang="en" className="dark">
       <body
         className={`${inter.className} dark:bg-gray-dark dark:text-[#ffffff]`}
       >
-        <Providers>
+        <SessionProvider refetchOnWindowFocus refetchInterval={3600}>
+          <Providers>
+            <SessionRedirect />
             <Dom>{children}</Dom>
-        </Providers>
+          </Providers>
+        </SessionProvider>
       </body>
     </html>
   );

@@ -15,7 +15,7 @@ export const ProvidersContext = createContext<IContext | null>(null);
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   const appData = useStore(useAppStore, (state) => state);
-  const [themeMode, setThemeMode] = useState<ThemeMode>('dark')
+  const [themeMode, setThemeMode] = useState<ThemeMode>('dark');
 
   useEffect(() => {
     if (appData?.dark) {
