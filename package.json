@@ -20,7 +20,7 @@
     }
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": "yarn lint"
+    "**/*.{js,jsx,ts,tsx,html}": "yarn lint"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.1.0",
