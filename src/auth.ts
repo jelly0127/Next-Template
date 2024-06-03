@@ -4,13 +4,8 @@ import GitHub from "next-auth/providers/github"
 import db from "./db"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [GitHub({
-     clientId: process.env.AUTH_GITHUB_ID,
-      clientSecret: process.env.AUTH_GITHUB_SECRET,
-      authorization: { params: { scope: 'read:user' } }
-  }),
+  providers: [GitHub,
   ],
-  basePath:process.env.NEXTAUTH_URL,
  adapter: PrismaAdapter(db),
  session: {
     strategy: 'jwt',
